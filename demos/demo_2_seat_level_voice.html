@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Every trade has a seat-level voice</title>
+<style>
+:root {
+  --navy: #002d72;
+  --navy-dark: #001a44;
+  --gold: #c39536;
+  --bg: #fafafa;
+  --card: #ffffff;
+  --text: #1a1a1a;
+  --text-muted: #666;
+  --border: #e0e0e0;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+header {
+  background: var(--navy);
+  color: white;
+  padding: 20px 24px;
+  margin: -24px -24px 32px -24px;
+  border-bottom: 3px solid var(--gold);
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.logo {
+  flex-shrink: 0;
+}
+
+.logo svg {
+  width: 120px;
+  height: auto;
+}
+
+.header-content {
+  flex: 1;
+}
+
+header h1 {
+  font-size: 24px;
+  font-weight: 600;
+  letter-spacing: -0.3px;
+  margin-bottom: 6px;
+}
+
+header .tagline {
+  font-size: 14px;
+  opacity: 0.85;
+  font-style: italic;
+}
+
+.vision-block {
+  background: linear-gradient(135deg, var(--navy-dark) 0%, var(--navy) 100%);
+  color: white;
+  padding: 32px;
+  border-radius: 8px;
+  margin-bottom: 32px;
+  border-left: 4px solid var(--gold);
+}
+
+.vision-block h2 {
+  font-size: 20px;
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+
+.vision-block p {
+  font-size: 15px;
+  line-height: 1.7;
+  opacity: 0.95;
+}
+
+.layer-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.layer-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 20px;
+  position: relative;
+}
+
+.layer-card.active {
+  border-left: 4px solid var(--gold);
+  background: linear-gradient(to right, #fff9f0 0%, white 100%);
+}
+
+.layer-card.future {
+  opacity: 0.6;
+}
+
+.layer-number {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  width: 32px;
+  height: 32px;
+  background: var(--navy);
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.layer-card.future .layer-number {
+  background: var(--border);
+  color: var(--text-muted);
+}
+
+.layer-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--navy);
+  margin-bottom: 8px;
+  padding-right: 40px;
+}
+
+.layer-card.future .layer-title {
+  color: var(--text-muted);
+}
+
+.layer-desc {
+  font-size: 13px;
+  color: var(--text-muted);
+  margin-bottom: 12px;
+}
+
+.layer-status {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.status-complete {
+  background: #e8f5e9;
+  color: #1b5e20;
+}
+
+.status-building {
+  background: #fff3cd;
+  color: #856404;
+}
+
+.sample-section {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 24px;
+  margin-bottom: 24px;
+}
+
+.sample-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 2px solid var(--gold);
+}
+
+.sample-title {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--navy);
+}
+
+.sample-label {
+  font-size: 12px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.voice-grid {
+  display: grid;
+  gap: 16px;
+}
+
+.voice-card {
+  border-left: 3px solid var(--border);
+  padding: 16px;
+  background: #fafbfc;
+  border-radius: 0 4px 4px 0;
+}
+
+.voice-name {
+  font-weight: 600;
+  color: var(--navy);
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.voice-badge {
+  font-size: 10px;
+  padding: 2px 6px;
+  background: var(--gold);
+  color: white;
+  border-radius: 3px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.voice-commentary {
+  font-size: 14px;
+  color: var(--text);
+  font-style: italic;
+  line-height: 1.6;
+}
+
+.placeholder {
+  text-align: center;
+  padding: 48px 24px;
+  color: var(--text-muted);
+  font-style: italic;
+  background: #f5f5f5;
+  border-radius: 4px;
+}
+
+footer {
+  margin-top: 48px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
+  font-size: 11px;
+  color: var(--text-muted);
+  text-align: center;
+}
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <div class="logo">
+      <svg width="120" height="48" viewBox="0 0 200 80" xmlns="http://www.w3.org/2000/svg">
+        <text x="100" y="52" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="48" font-weight="400" letter-spacing="10" fill="white">YILD</text>
+        <rect x="28" y="59" width="144" height="0.8" fill="white"/>
+        <text x="100" y="74" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="10" font-weight="400" letter-spacing="8" fill="white">INC.</text>
+      </svg>
+    </div>
+    <div class="header-content">
+      <h1>Every trade has a seat-level voice</h1>
+      <div class="tagline">Market intelligence with perspective</div>
+    </div>
+  </header>
+
+  <div class="layer-grid">
+    <div class="layer-card active">
+      <div class="layer-number">1</div>
+      <div class="layer-title">Where is it?</div>
+      <div class="layer-desc">
+        Rich or cheap? By how much? Where in its range?
+      </div>
+    </div>
+
+    <div class="layer-card active">
+      <div class="layer-number">2</div>
+      <div class="layer-title">When does it move?</div>
+      <div class="layer-desc">
+        What catalyst triggers mean reversion? Auction? Fed meeting? Data release?
+      </div>
+    </div>
+
+    <div class="layer-card active">
+      <div class="layer-number">3</div>
+      <div class="layer-title">Why is it dislocated?</div>
+      <div class="layer-desc">
+        Who's buying? Who's selling? What flow drove this?
+      </div>
+    </div>
+
+    <div class="layer-card active">
+      <div class="layer-number">4</div>
+      <div class="layer-title">What's the cost of carry?</div>
+      <div class="layer-desc">
+        Positive or negative roll? Does time work for you or against you?
+      </div>
+    </div>
+  </div>
+
+  <div class="sample-section">
+    <div class="sample-header">
+      <div class="sample-title">Sample Structure: UST 5s10s30s fly</div>
+    </div>
+
+    <div class="voice-grid">
+      <div class="voice-card">
+        <div class="voice-name">
+          Catalyst Voice
+          <span class="voice-badge">Auction Calendar</span>
+        </div>
+        <div class="voice-commentary">
+          "5Y auction in 3 days. Pre-auction concession pressure typical for this tenor. 10Y refunding next week — supply calendar tilts belly-heavy through month-end."
+        </div>
+      </div>
+
+      <div class="voice-card">
+        <div class="voice-name">
+          Supply Voice
+          <span class="voice-badge">Issuance Pressure</span>
+        </div>
+        <div class="voice-commentary">
+          "Treasury issuing $42B in 10Y this week vs $38B average. Post-auction reversal window opens Thursday if tail stays tight."
+        </div>
+      </div>
+
+      <div class="voice-card">
+        <div class="voice-name">
+          Carry Voice
+          <span class="voice-badge">Roll-Down</span>
+        </div>
+        <div class="voice-commentary">
+          "Negative carry of −0.8bp/month. Roll-down works against you if held passively. Need move within 2 weeks to offset bleed."
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    YILD • Market intelligence with perspective
+  </footer>
+</div>
+</body>
+</html>

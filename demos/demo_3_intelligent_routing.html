@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sales Brief — Intelligent Routing</title>
+<style>
+:root {
+  --navy: #002d72;
+  --navy-dark: #001a44;
+  --gold: #c39536;
+  --bg: #fafafa;
+  --card: #ffffff;
+  --text: #1a1a1a;
+  --text-muted: #666;
+  --border: #e0e0e0;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.5;
+}
+
+.container {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+header {
+  background: var(--navy);
+  color: white;
+  padding: 20px 24px;
+  margin: -24px -24px 24px -24px;
+  border-bottom: 3px solid var(--gold);
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.logo {
+  flex-shrink: 0;
+}
+
+.logo svg {
+  width: 120px;
+  height: auto;
+}
+
+.header-content {
+  flex: 1;
+}
+
+header h1 {
+  font-size: 24px;
+  font-weight: 600;
+  letter-spacing: -0.3px;
+  margin-bottom: 4px;
+}
+
+header .meta {
+  font-size: 13px;
+  opacity: 0.85;
+}
+
+.info-panel {
+  background: linear-gradient(135deg, #f8f9fa 0%, white 100%);
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--gold);
+  border-radius: 6px;
+  padding: 20px 24px;
+  margin-bottom: 24px;
+}
+
+.info-title {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--navy);
+  margin-bottom: 12px;
+}
+
+.info-text {
+  font-size: 13px;
+  color: var(--text);
+  line-height: 1.7;
+  margin-bottom: 8px;
+}
+
+.sp-tabs {
+  display: flex;
+  gap: 2px;
+  border-bottom: 2px solid var(--border);
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+}
+
+.sp-tab {
+  padding: 12px 20px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-bottom: none;
+  cursor: pointer;
+  font-weight: 500;
+  color: var(--text-muted);
+  transition: all 0.15s;
+  border-radius: 4px 4px 0 0;
+  font-size: 14px;
+}
+
+.sp-tab:hover {
+  background: #f5f5f5;
+}
+
+.sp-tab.active {
+  background: var(--navy);
+  color: white;
+  border-color: var(--navy);
+}
+
+.sp-content {
+  display: none;
+}
+
+.sp-content.active {
+  display: block;
+}
+
+.sp-summary {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 16px 20px;
+  margin-bottom: 24px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.sp-name {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--navy);
+}
+
+.sp-stats {
+  font-size: 13px;
+  color: var(--text-muted);
+  font-family: 'SF Mono', Menlo, Consolas, monospace;
+}
+
+/* Country Tabs within SP view */
+.country-tabs-sp {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 0;
+  border-bottom: 2px solid var(--navy);
+}
+
+.country-tab-sp {
+  padding: 10px 20px;
+  background: #f0f0f0;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 13px;
+  color: var(--text-muted);
+  transition: all 0.2s;
+  border-radius: 4px 4px 0 0;
+}
+
+.country-tab-sp:hover {
+  background: #e5e5e5;
+}
+
+.country-tab-sp.active {
+  background: var(--navy);
+  color: white;
+}
+
+.country-content-sp {
+  display: none;
+  background: white;
+  border: 1px solid var(--border);
+  border-top: none;
+  padding: 20px;
+  min-height: 300px;
+}
+
+.country-content-sp.active {
+  display: block;
+}
+
+.account-block {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  margin-bottom: 16px;
+  overflow: hidden;
+}
+
+.account-header {
+  background: #eef1f9;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--border);
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+}
+
+.account-code {
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--navy);
+  font-family: 'SF Mono', Menlo, Consolas, monospace;
+}
+
+.account-desk {
+  font-size: 11px;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.item {
+  padding: 12px 16px;
+  border-bottom: 1px solid #f0f2f8;
+}
+
+.item:last-child {
+  border-bottom: none;
+}
+
+.item-header {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.structure-name {
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--navy);
+  font-family: 'SF Mono', Menlo, Consolas, monospace;
+}
+
+.item-metrics {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 6px;
+  font-family: 'SF Mono', Menlo, Consolas, monospace;
+  font-size: 12px;
+}
+
+.metric {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+}
+
+.metric-label {
+  color: var(--text-muted);
+  font-size: 10px;
+  text-transform: uppercase;
+}
+
+.metric-value {
+  font-weight: 600;
+  color: var(--text);
+}
+
+.item-commentary {
+  font-size: 13px;
+  color: var(--text);
+  line-height: 1.6;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 48px 24px;
+  color: var(--text-muted);
+  font-size: 13px;
+}
+
+footer {
+  margin-top: 48px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
+  font-size: 11px;
+  color: var(--text-muted);
+  text-align: center;
+}
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <div class="logo">
+      <svg width="120" height="48" viewBox="0 0 200 80" xmlns="http://www.w3.org/2000/svg">
+        <text x="100" y="52" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="48" font-weight="400" letter-spacing="10" fill="white">YILD</text>
+        <rect x="28" y="59" width="144" height="0.8" fill="white"/>
+        <text x="100" y="74" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="10" font-weight="400" letter-spacing="8" fill="white">INC.</text>
+      </svg>
+    </div>
+    <div class="header-content">
+      <h1>Sales Brief</h1>
+      <div class="meta">As of 2026-05-02</div>
+    </div>
+  </header>
+
+  <div class="sp-tabs">
+    <div class="sp-tab active" onclick="showSP('alice')">Alice Chen</div>
+    <div class="sp-tab" onclick="showSP('bob')">Bob Martinez</div>
+    <div class="sp-tab" onclick="showSP('carol')">Carol Williams</div>
+  </div>
+
+  <!-- ALICE CHEN (SP_A) -->
+  <div id="alice" class="sp-content active">
+    <div class="sp-summary">
+      <div class="sp-name">Alice Chen</div>
+    </div>
+
+    <div class="country-tabs-sp">
+      <div class="country-tab-sp active" onclick="showCountrySP('alice', 'us')">United States</div>
+      <div class="country-tab-sp" onclick="showCountrySP('alice', 'canada')">Canada</div>
+    </div>
+
+    <!-- ALICE - US -->
+    <div id="alice-us" class="country-content-sp active">
+      <div class="account-block">
+        <div class="account-header">
+          <div>
+            <div class="account-code">PENSION_01</div>
+            <div class="account-desk">Asset Manager Desk</div>
+          </div>
+        </div>
+
+        <div class="item">
+          <div class="item-header">
+            <div class="structure-name">UST 5s10s30s fly</div>
+          </div>
+          <div class="item-metrics">
+            <div class="metric">
+              <span class="metric-label">z</span>
+              <span class="metric-value">-1.96σ</span>
+            </div>
+            <div class="metric">
+              <span class="metric-label">hl</span>
+              <span class="metric-value">14.1d</span>
+            </div>
+          </div>
+          <div class="item-commentary">
+            Historically cheap, supported by mean reversion model. Layer 2 catalyst timing: Not active.
+          </div>
+        </div>
+
+        <div class="item">
+          <div class="item-header">
+            <div class="structure-name">UST 2s5s10s fly</div>
+          </div>
+          <div class="item-metrics">
+            <div class="metric">
+              <span class="metric-label">z</span>
+              <span class="metric-value">+2.11σ</span>
+            </div>
+            <div class="metric">
+              <span class="metric-label">hl</span>
+              <span class="metric-value">12.4d</span>
+            </div>
+          </div>
+          <div class="item-commentary">
+            Historically rich, supported by mean reversion model. Layer 2 catalyst timing: Not active.
+          </div>
+        </div>
+      </div>
+
+      <div class="account-block">
+        <div class="account-header">
+          <div>
+            <div class="account-code">INSURANCE_03</div>
+            <div class="account-desk">Asset Manager Desk</div>
+          </div>
+        </div>
+
+        <div class="item">
+          <div class="item-header">
+            <div class="structure-name">UST 5s30s</div>
+          </div>
+          <div class="item-metrics">
+            <div class="metric">
+              <span class="metric-label">z</span>
+              <span class="metric-value">-1.87σ</span>
+            </div>
+            <div class="metric">
+              <span class="metric-label">hl</span>
+              <span class="metric-value">10.4d</span>
+            </div>
+          </div>
+          <div class="item-commentary">
+            Historically cheap, supported by mean reversion model. Layer 2 catalyst timing: Not active.
+          </div>
+        </div>
+
+        <div class="item">
+          <div class="item-header">
+            <div class="structure-name">UST 7s30s</div>
+          </div>
+          <div class="item-metrics">
+            <div class="metric">
+              <span class="metric-label">z</span>
+              <span class="metric-value">-1.77σ</span>
+            </div>
+            <div class="metric">
+              <span class="metric-label">hl</span>
+              <span class="metric-value">13.1d</span>
+            </div>
+          </div>
+          <div class="item-commentary">
+            Historically cheap, supported by mean reversion model. Layer 2 catalyst timing: Not active.
+          </div>
+        </div>
+
+        <div class="item">
+          <div class="item-header">
+            <div class="structure-name">UST 2s10s</div>
+          </div>
+          <div class="item-metrics">
+            <div class="metric">
+              <span class="metric-label">z</span>
+              <span class="metric-value">-1.39σ</span>
+            </div>
+            <div class="metric">
+              <span class="metric-label">hl</span>
+              <span class="metric-value">8.9d</span>
+            </div>
+          </div>
+          <div class="item-commentary">
+            Historically cheap, supported by mean reversion model. Layer 2 catalyst timing: Not active.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ALICE - CANADA -->
+    <div id="alice-canada" class="country-content-sp">
+      <div class="account-block">
+        <div class="account-header">
+          <div>
+            <div class="account-code">CROSSMKT_PENSION_02</div>
+            <div class="account-desk">Asset Manager Desk</div>
+          </div>
+        </div>
+
+        <div class="item">
+          <div class="item-header">
+            <div class="structure-name">CGB 2s10s30s fly</div>
+          </div>
+          <div class="item-metrics">
+            <div class="metric">
+              <span class="metric-label">z</span>
+              <span class="metric-value">-2.35σ</span>
+            </div>
+            <div class="metric">
+              <span class="metric-label">hl</span>
+              <span class="metric-value">10.9d</span>
+            </div>
+          </div>
+          <div class="item-commentary">
+            Historically cheap, supported by mean reversion model. Layer 2 catalyst timing: Not active.
+          </div>
+        </div>
+
+        <div class="item">
+          <div class="item-header">
+            <div class="structure-name">CGB 5s30s</div>
+          </div>
+          <div class="item-metrics">
+            <div class="metric">
+              <span class="metric-label">z</span>
+              <span class="metric-value">-6.71σ</span>
+            </div>
+            <div class="metric">
+              <span class="metric-label">hl</span>
+              <span class="metric-value">11.5d</span>
+            </div>
+          </div>
+          <div class="item-commentary">
+            Pending outcome analysis.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BOB MARTINEZ (SP_B) -->
+  <div id="bob" class="sp-content">
+    <div class="sp-summary">
+      <div class="sp-name">Bob Martinez</div>
+    </div>
+
+    <div class="country-tabs-sp">
+      <div class="country-tab-sp active" onclick="showCountrySP('bob', 'us')">United States</div>
+      <div class="country-tab-sp" onclick="showCountrySP('bob', 'canada')">Canada</div>
+    </div>
+
+    <!-- BOB - US -->
+    <div id="bob-us" class="country-content-sp active">
+      <div class="account-block">
+        <div class="account-header">
+          <div>
+            <div class="account-code">CORP_TREAS_05</div>
+            <div class="account-desk">Corporate Desk</div>
+          </div>
+        </div>
+
+        <div class="item">
+          <div class="item-header">
+            <div class="structure-name">BAML AAA BBB SPREAD</div>
+          </div>
+          <div class="item-metrics">
+            <div class="metric">
+              <span class="metric-label">z</span>
+              <span class="metric-value">-2.39σ</span>
+            </div>
+            <div class="metric">
+              <span class="metric-label">hl</span>
+              <span class="metric-value">23.3d</span>
+            </div>
+          </div>
+          <div class="item-commentary">
+            Historically cheap, supported by mean reversion model. Layer 2 catalyst timing: Not active.
+          </div>
+        </div>
+
+        <div class="item">
+          <div class="item-header">
+            <div class="structure-name">UST 5s30s</div>
+          </div>
+          <div class="item-metrics">
+            <div class="metric">
+              <span class="metric-label">z</span>
+              <span class="metric-value">-1.87σ</span>
+            </div>
+            <div class="metric">
+              <span class="metric-label">hl</span>
+              <span class="metric-value">10.4d</span>
+            </div>
+          </div>
+          <div class="item-commentary">
+            Historically cheap, supported by mean reversion model. Layer 2 catalyst timing: Not active.
+          </div>
+        </div>
+      </div>
+
+      <div class="account-block">
+        <div class="account-header">
+          <div>
+            <div class="account-code">TIPS_FUND_04</div>
+            <div class="account-desk">Asset Manager Desk</div>
+          </div>
+        </div>
+
+        <div class="item">
+          <div class="item-header">
+            <div class="structure-name">TIPS 5s7s</div>
+          </div>
+          <div class="item-metrics">
+            <div class="metric">
+              <span class="metric-label">z</span>
+              <span class="metric-value">+2.16σ</span>
+            </div>
+            <div class="metric">
+              <span class="metric-label">hl</span>
+              <span class="metric-value">14.1d</span>
+            </div>
+          </div>
+          <div class="item-commentary">
+            Historically rich, supported by mean reversion model. Layer 2 catalyst timing: Not active.
+          </div>
+        </div>
+
+        <div class="item">
+          <div class="item-header">
+            <div class="structure-name">TIPS 7s10s20s fly</div>
+          </div>
+          <div class="item-metrics">
+            <div class="metric">
+              <span class="metric-label">z</span>
+              <span class="metric-value">-2.49σ</span>
+            </div>
+            <div class="metric">
+              <span class="metric-label">hl</span>
+              <span class="metric-value">11.2d</span>
+            </div>
+          </div>
+          <div class="item-commentary">
+            Historically cheap, supported by mean reversion model. Layer 2 catalyst timing: Not active.
+          </div>
+        </div>
+
+        <div class="item">
+          <div class="item-header">
+            <div class="structure-name">TIPS 5s10s30s fly</div>
+          </div>
+          <div class="item-metrics">
+            <div class="metric">
+              <span class="metric-label">z</span>
+              <span class="metric-value">-1.65σ</span>
+            </div>
+            <div class="metric">
+              <span class="metric-label">hl</span>
+              <span class="metric-value">16.5d</span>
+            </div>
+          </div>
+          <div class="item-commentary">
+            Historically cheap, supported by mean reversion model. Layer 2 catalyst timing: Not active.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BOB - CANADA -->
+    <div id="bob-canada" class="country-content-sp">
+      <div class="empty-state">
+        No Canadian structures matched for Bob's accounts today
+      </div>
+    </div>
+  </div>
+
+  <!-- CAROL WILLIAMS (SP_C) -->
+  <div id="carol" class="sp-content">
+    <div class="sp-summary">
+      <div class="sp-name">Carol Williams</div>
+    </div>
+
+    <div class="country-tabs-sp">
+      <div class="country-tab-sp active" onclick="showCountrySP('carol', 'us')">United States</div>
+      <div class="country-tab-sp" onclick="showCountrySP('carol', 'canada')">Canada</div>
+    </div>
+
+    <!-- CAROL - US -->
+    <div id="carol-us" class="country-content-sp active">
+      <div class="account-block">
+        <div class="account-header">
+          <div>
+            <div class="account-code">HEDGE_GLOBAL_01</div>
+            <div class="account-desk">Hedge Fund Desk</div>
+          </div>
+        </div>
+
+        <div class="item">
+          <div class="item-header">
+            <div class="structure-name">UST 7s10s</div>
+          </div>
+          <div class="item-metrics">
+            <div class="metric">
+              <span class="metric-label">z</span>
+              <span class="metric-value">-2.83σ</span>
+            </div>
+            <div class="metric">
+              <span class="metric-label">hl</span>
+              <span class="metric-value">8.3d</span>
+            </div>
+          </div>
+          <div class="item-commentary">
+            Pending outcome analysis.
+          </div>
+        </div>
+
+        <div class="item">
+          <div class="item-header">
+            <div class="structure-name">OBFR SOFR BASIS</div>
+          </div>
+          <div class="item-metrics">
+            <div class="metric">
+              <span class="metric-label">z</span>
+              <span class="metric-value">+0.36σ</span>
+            </div>
+            <div class="metric">
+              <span class="metric-label">hl</span>
+              <span class="metric-value">3.4d</span>
+            </div>
+          </div>
+          <div class="item-commentary">
+            Pending outcome analysis.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CAROL - CANADA -->
+    <div id="carol-canada" class="country-content-sp">
+      <div class="account-block">
+        <div class="account-header">
+          <div>
+            <div class="account-code">HEDGE_GLOBAL_01</div>
+            <div class="account-desk">Hedge Fund Desk</div>
+          </div>
+        </div>
+
+        <div class="item">
+          <div class="item-header">
+            <div class="structure-name">CGB 2s10s</div>
+          </div>
+          <div class="item-metrics">
+            <div class="metric">
+              <span class="metric-label">z</span>
+              <span class="metric-value">-5.60σ</span>
+            </div>
+            <div class="metric">
+              <span class="metric-label">hl</span>
+              <span class="metric-value">16.6d</span>
+            </div>
+          </div>
+          <div class="item-commentary">
+            Pending outcome analysis.
+          </div>
+        </div>
+
+        <div class="item">
+          <div class="item-header">
+            <div class="structure-name">CGB 5s10s</div>
+          </div>
+          <div class="item-metrics">
+            <div class="metric">
+              <span class="metric-label">z</span>
+              <span class="metric-value">-5.34σ</span>
+            </div>
+            <div class="metric">
+              <span class="metric-label">hl</span>
+              <span class="metric-value">12.1d</span>
+            </div>
+          </div>
+          <div class="item-commentary">
+            Pending outcome analysis.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    YILD Sales Brief • As of 2026-05-02
+    <div style="margin-top: 16px; padding-top: 12px; border-top: 1px solid var(--border); font-size: 10px; line-height: 1.6; max-width: 900px; margin-left: auto; margin-right: auto;">
+      <strong>DISCLAIMER:</strong> YILD Inc. provides market intelligence for institutional use only. This information does not constitute investment advice or a recommendation to buy, sell, or hold any security. YILD makes no representation regarding accuracy, completeness, or reliability of data. Intended solely for financial institutions and authorized personnel in connection with their own independent analysis. YILD is not a registered investment adviser or broker-dealer. All investment decisions carry risk. YILD shall not be liable for any losses arising from use of its services.
+    </div>
+  </footer>
+</div>
+
+<script>
+function showSP(spId) {
+  const contents = document.querySelectorAll('.sp-content');
+  contents.forEach(c => c.classList.remove('active'));
+  
+  const tabs = document.querySelectorAll('.sp-tab');
+  tabs.forEach(t => t.classList.remove('active'));
+  
+  document.getElementById(spId).classList.add('active');
+  event.target.classList.add('active');
+}
+
+function showCountrySP(sp, country) {
+  const prefix = sp + '-';
+  
+  // Hide all country content for this SP
+  document.querySelectorAll(`#${sp} .country-content-sp`).forEach(c => c.classList.remove('active'));
+  document.querySelectorAll(`#${sp} .country-tab-sp`).forEach(t => t.classList.remove('active'));
+  
+  // Show selected country
+  document.getElementById(prefix + country).classList.add('active');
+  event.target.classList.add('active');
+}
+</script>
+</body>
+</html>

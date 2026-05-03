@@ -1,0 +1,1058 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>YILD RV Factory</title>
+<style>
+:root {
+  --navy: #002d72;
+  --navy-dark: #001a44;
+  --gold: #c39536;
+  --bg: #fafafa;
+  --card: #ffffff;
+  --text: #1a1a1a;
+  --text-muted: #666;
+  --border: #e0e0e0;
+  --green: #0d7a3f;
+  --red: #c0392b;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.5;
+}
+
+.container {
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+header {
+  background: var(--navy);
+  color: white;
+  padding: 20px 24px;
+  margin: -24px -24px 24px -24px;
+  border-bottom: 3px solid var(--gold);
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+
+.logo {
+  flex-shrink: 0;
+}
+
+.logo svg {
+  width: 120px;
+  height: auto;
+}
+
+.header-content {
+  flex: 1;
+}
+
+header h1 {
+  font-size: 24px;
+  font-weight: 600;
+  letter-spacing: -0.3px;
+  margin-bottom: 4px;
+}
+
+header .meta {
+  font-size: 13px;
+  opacity: 0.85;
+}
+
+/* Country Tabs (Level 1) */
+.country-tabs {
+  display: flex;
+  gap: 4px;
+  margin-bottom: 0;
+  border-bottom: 3px solid var(--navy);
+}
+
+.country-tab {
+  padding: 14px 28px;
+  background: #f0f0f0;
+  border: none;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 15px;
+  color: var(--text-muted);
+  transition: all 0.2s;
+  border-radius: 6px 6px 0 0;
+}
+
+.country-tab:hover {
+  background: #e5e5e5;
+}
+
+.country-tab.active {
+  background: var(--navy);
+  color: white;
+}
+
+.country-content {
+  display: none;
+}
+
+.country-content.active {
+  display: block;
+}
+
+/* Product Tabs (Level 2) */
+.product-tabs {
+  display: flex;
+  gap: 2px;
+  background: white;
+  padding: 16px 16px 0 16px;
+  border-left: 1px solid var(--border);
+  border-right: 1px solid var(--border);
+}
+
+.product-tab {
+  padding: 10px 18px;
+  background: transparent;
+  border: 1px solid transparent;
+  border-bottom: none;
+  cursor: pointer;
+  font-weight: 500;
+  font-size: 13px;
+  color: var(--text-muted);
+  transition: all 0.15s;
+  border-radius: 4px 4px 0 0;
+}
+
+.product-tab:hover {
+  background: #f5f5f5;
+}
+
+.product-tab.active {
+  background: var(--bg);
+  border-color: var(--border);
+  color: var(--text);
+  font-weight: 600;
+}
+
+.product-content {
+  display: none;
+  background: white;
+  border: 1px solid var(--border);
+  border-top: none;
+  padding: 24px;
+  min-height: 400px;
+}
+
+.product-content.active {
+  display: block;
+}
+
+.cohort-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  padding: 16px 0 12px;
+  border-bottom: 2px solid var(--border);
+  margin-bottom: 16px;
+}
+
+.cohort-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--navy);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.cohort-count {
+  font-size: 12px;
+  color: var(--text-muted);
+  font-family: 'SF Mono', Menlo, Consolas, monospace;
+}
+
+.structure-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.structure-card {
+  background: white;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 14px 16px;
+  transition: all 0.2s;
+}
+
+.structure-card:hover {
+  border-color: var(--navy);
+  box-shadow: 0 2px 8px rgba(0,45,114,0.1);
+}
+
+.structure-name {
+  font-weight: 700;
+  font-size: 14px;
+  color: var(--navy);
+  margin-bottom: 8px;
+  font-family: 'SF Mono', Menlo, Consolas, monospace;
+}
+
+.metric-label {
+  font-size: 10px;
+  padding: 2px 6px;
+  border-radius: 3px;
+  font-weight: 600;
+  text-transform: uppercase;
+  margin-left: 8px;
+}
+
+.metric-label.rich {
+  background: #fff3cd;
+  color: #856404;
+}
+
+.metric-label.cheap {
+  background: #d1ecf1;
+  color: #0c5460;
+}
+
+.structure-metrics {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 6px;
+  font-family: 'SF Mono', Menlo, Consolas, monospace;
+  font-size: 12px;
+}
+
+.metric {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+}
+
+.metric .metric-label {
+  color: var(--text-muted);
+  font-size: 10px;
+  text-transform: uppercase;
+  background: none;
+  padding: 0;
+  margin: 0;
+}
+
+.z-value {
+  font-weight: 700;
+}
+
+.z-value.z-strong {
+  color: var(--red);
+}
+
+.z-value.z-moderate {
+  color: #e67e22;
+}
+
+.z-value.z-light {
+  color: #95a5a6;
+}
+
+.context {
+  font-size: 11px;
+  color: var(--text-muted);
+  font-style: italic;
+  margin-top: 4px;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 48px 24px;
+  color: var(--text-muted);
+  font-size: 13px;
+}
+
+footer {
+  margin-top: 48px;
+  padding-top: 16px;
+  border-top: 1px solid var(--border);
+  font-size: 11px;
+  color: var(--text-muted);
+  text-align: center;
+}
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <div class="logo">
+      <svg width="120" height="48" viewBox="0 0 200 80" xmlns="http://www.w3.org/2000/svg">
+        <text x="100" y="52" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="48" font-weight="400" letter-spacing="10" fill="white">YILD</text>
+        <rect x="28" y="59" width="144" height="0.8" fill="white"/>
+        <text x="100" y="74" text-anchor="middle" font-family="-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif" font-size="10" font-weight="400" letter-spacing="8" fill="white">INC.</text>
+      </svg>
+    </div>
+    <div class="header-content">
+      <h1>RV Factory</h1>
+      <div class="meta">Data as of 2026-05-02</div>
+    </div>
+  </header>
+
+  <!-- COUNTRY TABS (Level 1) -->
+  <div class="country-tabs">
+    <div class="country-tab active" onclick="showCountry('us')">United States</div>
+    <div class="country-tab" onclick="showCountry('canada')">Canada</div>
+  </div>
+
+  <!-- UNITED STATES -->
+  <div id="us" class="country-content active">
+    <div class="product-tabs">
+      <div class="product-tab active" onclick="showProduct('us', 'curves')">Curves</div>
+      <div class="product-tab" onclick="showProduct('us', 'flies')">Butterflies</div>
+      <div class="product-tab" onclick="showProduct('us', 'basis')">Basis & Funding</div>
+      <div class="product-tab" onclick="showProduct('us', 'inflation')">Inflation</div>
+    </div>
+
+    <!-- US CURVES -->
+    <div id="us-curves" class="product-content active">
+      <div class="cohort-header">
+        <div class="cohort-title">Historically cheap, supported by mean reversion model</div>
+        <div class="cohort-count">4 curves</div>
+      </div>
+      <div class="structure-grid">
+        <div class="structure-card">
+          <div class="structure-name">
+            BAML AAA BBB SPREAD
+            <span class="metric-label cheap">CHEAP</span>
+          </div>
+          <div class="structure-metrics">
+            <div class="metric">
+              <span class="metric-label">z</span>
+              <span class="z-value z-strong">-2.39σ</span>
+            </div>
+            <div class="metric">
+              <span class="metric-label">hl</span>
+              <span>23.3d</span>
+            </div>
+          </div>
+          <div class="context">Layer 2 catalyst timing: Not active</div>
+        </div>
+
+        <div class="structure-card">
+          <div class="structure-name">
+            UST 5s30s
+            <span class="metric-label cheap">CHEAP</span>
+          </div>
+          <div class="structure-metrics">
+            <div class="metric">
+              <span class="metric-label">z</span>
+              <span class="z-value z-moderate">-1.87σ</span>
+            </div>
+            <div class="metric">
+              <span class="metric-label">hl</span>
+              <span>10.4d</span>
+            </div>
+          </div>
+          <div class="context">Layer 2 catalyst timing: Not active</div>
+        </div>
+
+        <div class="structure-card">
+          <div class="structure-name">
+            UST 7s30s
+            <span class="metric-label cheap">CHEAP</span>
+          </div>
+          <div class="structure-metrics">
+            <div class="metric">
+              <span class="metric-label">z</span>
+              <span class="z-value z-moderate">-1.77σ</span>
+            </div>
+            <div class="metric">
+              <span class="metric-label">hl</span>
+              <span>13.1d</span>
+            </div>
+          </div>
+          <div class="context">Layer 2 catalyst timing: Not active</div>
+        </div>
+
+        <div class="structure-card">
+          <div class="structure-name">
+            UST 2s10s
+            <span class="metric-label cheap">CHEAP</span>
+          </div>
+          <div class="structure-metrics">
+            <div class="metric">
+              <span class="metric-label">z</span>
+              <span class="z-value z-moderate">-1.39σ</span>
+            </div>
+            <div class="metric">
+              <span class="metric-label">hl</span>
+              <span>8.9d</span>
+            </div>
+          </div>
+          <div class="context">Layer 2 catalyst timing: Not active</div>
+        </div>
+      </div>
+
+      <div class="cohort-header">
+        <div class="cohort-title">Pending outcome analysis</div>
+        <div class="cohort-count">4 curves</div>
+      </div>
+      <div class="structure-grid">
+        <div class="structure-card">
+          <div class="structure-name">UST 7s10s</div>
+          <div class="structure-metrics">
+            <div class="metric">
+              <span class="metric-label">z</span>
+              <span class="z-value z-strong">-2.83σ</span>
+            </div>
+            <div class="metric">
+              <span class="metric-label">hl</span>
+              <span>8.3d</span>
+            </div>
+          </div>
+          <div class="context">Pending outcome analysis.</div>
+        </div>
+
+        <div class="structure-card">
+          <div class="structure-name">UST 5s10s</div>
+          <div class="structure-metrics">
+            <div class="metric">
+              <span class="metric-label">z</span>
+              <span class="z-value z-strong">-2.77σ</span>
+            </div>
+            <div class="metric">
+              <span class="metric-label">hl</span>
+              <span>6.8d</span>
+            </div>
+          </div>
+          <div class="context">Pending outcome analysis.</div>
+        </div>
+
+        <div class="structure-card">
+          <div class="structure-name">UST 5s20s</div>
+          <div class="structure-metrics">
+            <div class="metric">
+              <span class="metric-label">z</span>
+              <span class="z-value z-moderate">-1.63σ</span>
+            </div>
+            <div class="metric">
+              <span class="metric-label">hl</span>
+              <span>7.7d</span>
+            </div>
+          </div>
+          <div class="context">Pending outcome analysis.</div>
+        </div>
+
+        <div class="structure-card">
+          <div class="structure-name">UST 5s7s</div>
+          <div class="structure-metrics">
+            <div class="metric">
+              <span class="metric-label">z</span>
+              <span class="z-value z-moderate">-1.41σ</span>
+            </div>
+            <div class="metric">
+              <span class="metric-label">hl</span>
+              <span>2.2d</span>
+            </div>
+          </div>
+          <div class="context">Pending outcome analysis.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- US FLIES -->
+    <div id="us-flies" class="product-content">
+      <div class="cohort-header">
+        <div class="cohort-title">Historically rich, supported by mean reversion model</div>
+        <div class="cohort-count">2 flies</div>
+      </div>
+      <div class="structure-grid">
+        <div class="structure-card">
+          <div class="structure-name">
+            UST 2s5s10s fly
+            <span class="metric-label rich">RICH</span>
+          </div>
+          <div class="structure-metrics">
+            <div class="metric">
+              <span class="metric-label">z</span>
+              <span class="z-value z-strong">+2.11σ</span>
+            </div>
+            <div class="metric">
+              <span class="metric-label">hl</span>
+              <span>12.4d</span>
+            </div>
+          </div>
+          <div class="context">Layer 2 catalyst timing: Not active</div>
+        </div>
+
+        <div class="structure-card">
+          <div class="structure-name">
+            UST 2s5s30s fly
+            <span class="metric-label rich">RICH</span>
+          </div>
+          <div class="structure-metrics">
+            <div class="metric">
+              <span class="metric-label">z</span>
+              <span class="z-value z-moderate">+1.91σ</span>
+            </div>
+            <div class="metric">
+              <span class="metric-label">hl</span>
+              <span>19.2d</span>
+            </div>
+          </div>
+          <div class="context">Layer 2 catalyst timing: Not active</div>
+        </div>
+      </div>
+
+      <div class="cohort-header">
+        <div class="cohort-title">Historically cheap, supported by mean reversion model</div>
+        <div class="cohort-count">6 flies</div>
+      </div>
+      <div class="structure-grid">
+        <div class="structure-card">
+          <div class="structure-name">
+            UST 5s10s20s fly
+            <span class="metric-label cheap">CHEAP</span>
+          </div>
+          <div class="structure-metrics">
+            <div class="metric">
+              <span class="metric-label">z</span>
+              <span class="z-value z-strong">-3.13σ</span>
+            </div>
+            <div class="metric">
+              <span class="metric-label">hl</span>
+              <span>8.3d</span>
+            </div>
+          </div>
+          <div class="context">Layer 2 catalyst timing: Not active</div>
+        </div>
+
+        <div class="structure-card">
+          <div class="structure-name">
+            UST 5s10s30s fly
+            <span class="metric-label cheap">CHEAP</span>
+          </div>
+          <div class="structure-metrics">
+            <div class="metric">
+              <span class="metric-label">z</span>
+              <span class="z-value z-moderate">-1.96σ</span>
+            </div>
+            <div class="metric">
+              <span class="metric-label">hl</span>
+              <span>14.1d</span>
+            </div>
+          </div>
+          <div class="context">Layer 2 catalyst timing: Not active</div>
+        </div>
+
+        <div class="structure-card">
+          <div class="structure-name">
+            UST 2s5s20s fly
+            <span class="metric-label cheap">CHEAP</span>
+          </div>
+          <div class="structure-metrics">
+            <div class="metric">
+              <span class="metric-label">z</span>
+              <span class="z-value z-moderate">-1.61σ</span>
+            </div>
+            <div class="metric">
+              <span class="metric-label">hl</span>
+              <span>8.5d</span>
+            </div>
+          </div>
+          <div class="context">Layer 2 catalyst timing: Not active</div>
+        </div>
+
+        <div class="structure-card">
+          <div class="structure-name">
+            UST 7s10s30s fly
+            <span class="metric-label cheap">CHEAP</span>
+          </div>
+          <div class="structure-metrics">
+            <div class="metric">
+              <span class="metric-label">z</span>
+              <span class="z-value z-moderate">-1.58σ</span>
+            </div>
+            <div class="metric">
+              <span class="metric-label">hl</span>
+              <span>12.9d</span>
+            </div>
+          </div>
+          <div class="context">Layer 2 catalyst timing: Not active</div>
+        </div>
+
+        <div class="structure-card">
+          <div class="structure-name">
+            UST 2s7s20s fly
+            <span class="metric-label cheap">CHEAP</span>
+          </div>
+          <div class="structure-metrics">
+            <div class="metric">
+              <span class="metric-label">z</span>
+              <span class="z-value z-moderate">-1.42σ</span>
+            </div>
+            <div class="metric">
+              <span class="metric-label">hl</span>
+              <span>9.3d</span>
+            </div>
+          </div>
+          <div class="context">Layer 2 catalyst timing: Not active</div>
+        </div>
+
+        <div class="structure-card">
+          <div class="structure-name">
+            UST 2s10s30s fly
+            <span class="metric-label cheap">CHEAP</span>
+          </div>
+          <div class="structure-metrics">
+            <div class="metric">
+              <span class="metric-label">z</span>
+              <span class="z-value z-moderate">-1.37σ</span>
+            </div>
+            <div class="metric">
+              <span class="metric-label">hl</span>
+              <span>13.2d</span>
+            </div>
+          </div>
+          <div class="context">Layer 2 catalyst timing: Not active</div>
+        </div>
+      </div>
+
+      <div class="cohort-header">
+        <div class="cohort-title">Pending outcome analysis</div>
+        <div class="cohort-count">7 flies</div>
+      </div>
+      <div class="structure-grid">
+        <div class="structure-card">
+          <div class="structure-name">UST 5s20s30s fly</div>
+          <div class="structure-metrics">
+            <div class="metric">
+              <span class="metric-label">z</span>
+              <span class="z-value z-moderate">-1.16σ</span>
+            </div>
+            <div class="metric">
+              <span class="metric-label">hl</span>
+              <span>4.6d</span>
+            </div>
+          </div>
+          <div class="context">Pending outcome analysis.</div>
+        </div>
+
+        <div class="structure-card">
+          <div class="structure-name">UST 5s7s10s fly</div>
+          <div class="structure-metrics">
+            <div class="metric">
+              <span class="metric-label">z</span>
+              <span class="z-value z-strong">-3.02σ</span>
+            </div>
+            <div class="metric">
+              <span class="metric-label">hl</span>
+              <span>3.8d</span>
+            </div>
+          </div>
+          <div class="context">Pending outcome analysis.</div>
+        </div>
+
+        <div class="structure-card">
+          <div class="structure-name">UST 2s7s10s fly</div>
+          <div class="structure-metrics">
+            <div class="metric">
+              <span class="metric-label">z</span>
+              <span class="z-value z-strong">-2.58σ</span>
+            </div>
+            <div class="metric">
+              <span class="metric-label">hl</span>
+              <span>4.5d</span>
+            </div>
+          </div>
+          <div class="context">Pending outcome analysis.</div>
+        </div>
+
+        <div class="structure-card">
+          <div class="structure-name">UST 2s10s20s fly</div>
+          <div class="structure-metrics">
+            <div class="metric">
+              <span class="metric-label">z</span>
+              <span class="z-value z-moderate">-1.72σ</span>
+            </div>
+            <div class="metric">
+              <span class="metric-label">hl</span>
+              <span>6.4d</span>
+            </div>
+          </div>
+          <div class="context">Pending outcome analysis.</div>
+        </div>
+
+        <div class="structure-card">
+          <div class="structure-name">UST 5s7s30s fly</div>
+          <div class="structure-metrics">
+            <div class="metric">
+              <span class="metric-label">z</span>
+              <span class="z-value z-moderate">-1.62σ</span>
+            </div>
+            <div class="metric">
+              <span class="metric-label">hl</span>
+              <span>7.5d</span>
+            </div>
+          </div>
+          <div class="context">Pending outcome analysis.</div>
+        </div>
+
+        <div class="structure-card">
+          <div class="structure-name">UST 5s7s20s fly</div>
+          <div class="structure-metrics">
+            <div class="metric">
+              <span class="metric-label">z</span>
+              <span class="z-value z-moderate">+1.54σ</span>
+            </div>
+            <div class="metric">
+              <span class="metric-label">hl</span>
+              <span>4.7d</span>
+            </div>
+          </div>
+          <div class="context">Pending outcome analysis.</div>
+        </div>
+
+        <div class="structure-card">
+          <div class="structure-name">UST 7s20s30s fly</div>
+          <div class="structure-metrics">
+            <div class="metric">
+              <span class="metric-label">z</span>
+              <span class="z-value z-moderate">-1.41σ</span>
+            </div>
+            <div class="metric">
+              <span class="metric-label">hl</span>
+              <span>8.8d</span>
+            </div>
+          </div>
+          <div class="context">Pending outcome analysis.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- US BASIS & FUNDING -->
+    <div id="us-basis" class="product-content">
+      <div class="cohort-header">
+        <div class="cohort-title">Pending outcome analysis</div>
+        <div class="cohort-count">2 funding spreads</div>
+      </div>
+      <div class="structure-grid">
+        <div class="structure-card">
+          <div class="structure-name">OBFR SOFR BASIS</div>
+          <div class="structure-metrics">
+            <div class="metric">
+              <span class="metric-label">z</span>
+              <span class="z-value z-light">+0.36σ</span>
+            </div>
+            <div class="metric">
+              <span class="metric-label">hl</span>
+              <span>3.4d</span>
+            </div>
+          </div>
+          <div class="context">Pending outcome analysis.</div>
+        </div>
+
+        <div class="structure-card">
+          <div class="structure-name">SOFR EFFR BASIS</div>
+          <div class="structure-metrics">
+            <div class="metric">
+              <span class="metric-label">z</span>
+              <span class="z-value z-light">-0.31σ</span>
+            </div>
+            <div class="metric">
+              <span class="metric-label">hl</span>
+              <span>3.4d</span>
+            </div>
+          </div>
+          <div class="context">Pending outcome analysis.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- US INFLATION -->
+    <div id="us-inflation" class="product-content">
+      <div class="cohort-header">
+        <div class="cohort-title">Historically rich, supported by mean reversion model</div>
+        <div class="cohort-count">2 TIPS curves</div>
+      </div>
+      <div class="structure-grid">
+        <div class="structure-card">
+          <div class="structure-name">
+            TIPS 5s7s
+            <span class="metric-label rich">RICH</span>
+          </div>
+          <div class="structure-metrics">
+            <div class="metric">
+              <span class="metric-label">z</span>
+              <span class="z-value z-strong">+2.16σ</span>
+            </div>
+            <div class="metric">
+              <span class="metric-label">hl</span>
+              <span>14.1d</span>
+            </div>
+          </div>
+          <div class="context">Layer 2 catalyst timing: Not active</div>
+        </div>
+        
+        <div class="structure-card">
+          <div class="structure-name">
+            TIPS 2s7s
+            <span class="metric-label rich">RICH</span>
+          </div>
+          <div class="structure-metrics">
+            <div class="metric">
+              <span class="metric-label">z</span>
+              <span class="z-value z-moderate">+1.83σ</span>
+            </div>
+            <div class="metric">
+              <span class="metric-label">hl</span>
+              <span>19.2d</span>
+            </div>
+          </div>
+          <div class="context">Layer 2 catalyst timing: Not active</div>
+        </div>
+      </div>
+
+      <div class="cohort-header">
+        <div class="cohort-title">Historically cheap, supported by mean reversion model</div>
+        <div class="cohort-count">2 TIPS butterflies</div>
+      </div>
+      <div class="structure-grid">
+        <div class="structure-card">
+          <div class="structure-name">
+            TIPS 7s10s20s fly
+            <span class="metric-label cheap">CHEAP</span>
+          </div>
+          <div class="structure-metrics">
+            <div class="metric">
+              <span class="metric-label">z</span>
+              <span class="z-value z-strong">-2.49σ</span>
+            </div>
+            <div class="metric">
+              <span class="metric-label">hl</span>
+              <span>11.2d</span>
+            </div>
+          </div>
+          <div class="context">Layer 2 catalyst timing: Not active</div>
+        </div>
+
+        <div class="structure-card">
+          <div class="structure-name">
+            TIPS 5s10s30s fly
+            <span class="metric-label cheap">CHEAP</span>
+          </div>
+          <div class="structure-metrics">
+            <div class="metric">
+              <span class="metric-label">z</span>
+              <span class="z-value z-moderate">-1.65σ</span>
+            </div>
+            <div class="metric">
+              <span class="metric-label">hl</span>
+              <span>16.5d</span>
+            </div>
+          </div>
+          <div class="context">Layer 2 catalyst timing: Not active</div>
+        </div>
+      </div>
+
+      <div class="cohort-header">
+        <div class="cohort-title">Pending outcome analysis</div>
+        <div class="cohort-count">2 TIPS butterflies</div>
+      </div>
+      <div class="structure-grid">
+        <div class="structure-card">
+          <div class="structure-name">TIPS 5s20s30s fly</div>
+          <div class="structure-metrics">
+            <div class="metric">
+              <span class="metric-label">z</span>
+              <span class="z-value z-strong">+3.68σ</span>
+            </div>
+            <div class="metric">
+              <span class="metric-label">hl</span>
+              <span>16.9d</span>
+            </div>
+          </div>
+          <div class="context">Pending outcome analysis.</div>
+        </div>
+
+        <div class="structure-card">
+          <div class="structure-name">TIPS 10s20s30s fly</div>
+          <div class="structure-metrics">
+            <div class="metric">
+              <span class="metric">
+              <span class="metric-label">z</span>
+              <span class="z-value z-strong">+3.05σ</span>
+            </div>
+            <div class="metric">
+              <span class="metric-label">hl</span>
+              <span>7.0d</span>
+            </div>
+          </div>
+          <div class="context">Pending outcome analysis.</div>
+        </div>
+      </div>
+
+      <div class="empty-state">
+        Breakevens: No action today
+      </div>
+    </div>
+  </div>
+
+  <!-- CANADA -->
+  <div id="canada" class="country-content">
+    <div class="product-tabs">
+      <div class="product-tab active" onclick="showProduct('canada', 'curves')">Curves</div>
+      <div class="product-tab" onclick="showProduct('canada', 'flies')">Butterflies</div>
+    </div>
+
+    <!-- CANADA CURVES -->
+    <div id="canada-curves" class="product-content active">
+      <div class="cohort-header">
+        <div class="cohort-title">Pending outcome analysis</div>
+        <div class="cohort-count">5 curves — All extreme cheap but conflicted</div>
+      </div>
+      <div class="structure-grid">
+        <div class="structure-card">
+          <div class="structure-name">CGB 2s30s</div>
+          <div class="structure-metrics">
+            <div class="metric">
+              <span class="metric-label">z</span>
+              <span class="z-value z-strong">-7.00σ</span>
+            </div>
+            <div class="metric">
+              <span class="metric-label">hl</span>
+              <span>15.5d</span>
+            </div>
+          </div>
+          <div class="context">Pending outcome analysis.</div>
+        </div>
+
+        <div class="structure-card">
+          <div class="structure-name">CGB 5s30s</div>
+          <div class="structure-metrics">
+            <div class="metric">
+              <span class="metric-label">z</span>
+              <span class="z-value z-strong">-6.71σ</span>
+            </div>
+            <div class="metric">
+              <span class="metric-label">hl</span>
+              <span>11.5d</span>
+            </div>
+          </div>
+          <div class="context">Pending outcome analysis.</div>
+        </div>
+
+        <div class="structure-card">
+          <div class="structure-name">CGB 2s10s</div>
+          <div class="structure-metrics">
+            <div class="metric">
+              <span class="metric-label">z</span>
+              <span class="z-value z-strong">-5.60σ</span>
+            </div>
+            <div class="metric">
+              <span class="metric-label">hl</span>
+              <span>16.6d</span>
+            </div>
+          </div>
+          <div class="context">Pending outcome analysis.</div>
+        </div>
+
+        <div class="structure-card">
+          <div class="structure-name">CGB 5s10s</div>
+          <div class="structure-metrics">
+            <div class="metric">
+              <span class="metric-label">z</span>
+              <span class="z-value z-strong">-5.34σ</span>
+            </div>
+            <div class="metric">
+              <span class="metric-label">hl</span>
+              <span>12.1d</span>
+            </div>
+          </div>
+          <div class="context">Pending outcome analysis.</div>
+        </div>
+
+        <div class="structure-card">
+          <div class="structure-name">CGB 2s5s</div>
+          <div class="structure-metrics">
+            <div class="metric">
+              <span class="metric-label">z</span>
+              <span class="z-value z-strong">-3.90σ</span>
+            </div>
+            <div class="metric">
+              <span class="metric-label">hl</span>
+              <span>16.2d</span>
+            </div>
+          </div>
+          <div class="context">Pending outcome analysis.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- CANADA FLIES -->
+    <div id="canada-flies" class="product-content">
+      <div class="cohort-header">
+        <div class="cohort-title">Historically cheap, supported by mean reversion model</div>
+        <div class="cohort-count">1 butterfly</div>
+      </div>
+      <div class="structure-grid">
+        <div class="structure-card">
+          <div class="structure-name">
+            CGB 2s10s30s fly
+            <span class="metric-label cheap">CHEAP</span>
+          </div>
+          <div class="structure-metrics">
+            <div class="metric">
+              <span class="metric-label">z</span>
+              <span class="z-value z-strong">-2.35σ</span>
+            </div>
+            <div class="metric">
+              <span class="metric-label">hl</span>
+              <span>10.9d</span>
+            </div>
+          </div>
+          <div class="context">Layer 2 catalyst timing: Not active</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <footer>
+    YILD RV Factory • Franchise platform • Data as of 2026-05-02 • For internal use only
+    <div style="margin-top: 16px; padding-top: 12px; border-top: 1px solid var(--border); font-size: 10px; line-height: 1.6; max-width: 900px; margin-left: auto; margin-right: auto;">
+      <strong>DISCLAIMER:</strong> YILD Inc. provides market intelligence for institutional use only. This information does not constitute investment advice or a recommendation to buy, sell, or hold any security. YILD makes no representation regarding accuracy, completeness, or reliability of data. Intended solely for financial institutions and authorized personnel in connection with their own independent analysis. YILD is not a registered investment adviser or broker-dealer. All investment decisions carry risk. YILD shall not be liable for any losses arising from use of its services.
+    </div>
+  </footer>
+</div>
+
+<script>
+// Country-level tab switching
+function showCountry(country) {
+  // Hide all country content
+  document.querySelectorAll('.country-content').forEach(c => c.classList.remove('active'));
+  document.querySelectorAll('.country-tab').forEach(t => t.classList.remove('active'));
+  
+  // Show selected country
+  document.getElementById(country).classList.add('active');
+  event.target.classList.add('active');
+}
+
+// Product-level tab switching (within a country)
+function showProduct(country, product) {
+  const prefix = country + '-';
+  
+  // Hide all product content for this country
+  document.querySelectorAll(`#${country} .product-content`).forEach(c => c.classList.remove('active'));
+  document.querySelectorAll(`#${country} .product-tab`).forEach(t => t.classList.remove('active'));
+  
+  // Show selected product
+  document.getElementById(prefix + product).classList.add('active');
+  event.target.classList.add('active');
+}
+</script>
+</body>
+</html>
