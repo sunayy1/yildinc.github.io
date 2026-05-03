@@ -9,9 +9,9 @@
   --navy: #002d72;
   --gold: #c39536;
 }
-
+ 
 * { margin: 0; padding: 0; box-sizing: border-box; }
-
+ 
 body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
   background: #fafafa;
@@ -19,7 +19,7 @@ body {
   line-height: 1.6;
   padding: 40px 20px;
 }
-
+ 
 .container {
   max-width: 800px;
   margin: 0 auto;
@@ -28,7 +28,7 @@ body {
   border-radius: 8px;
   overflow: hidden;
 }
-
+ 
 .header {
   background: var(--navy);
   color: white;
@@ -36,31 +36,31 @@ body {
   text-align: center;
   border-bottom: 3px solid var(--gold);
 }
-
+ 
 .logo {
   margin: 0 auto 20px;
 }
-
+ 
 .logo svg {
   width: 140px;
   height: auto;
 }
-
+ 
 .header h1 {
   font-size: 24px;
   font-weight: 600;
   margin-bottom: 8px;
 }
-
+ 
 .header p {
   font-size: 14px;
   opacity: 0.9;
 }
-
+ 
 .content {
   padding: 40px 32px;
 }
-
+ 
 .disclaimer-box {
   background: #fff9e6;
   border: 2px solid var(--gold);
@@ -68,7 +68,7 @@ body {
   padding: 24px;
   margin-bottom: 32px;
 }
-
+ 
 .disclaimer-title {
   font-size: 18px;
   font-weight: 700;
@@ -77,28 +77,28 @@ body {
   text-transform: uppercase;
   letter-spacing: 0.5px;
 }
-
+ 
 .disclaimer-text {
   font-size: 13px;
   line-height: 1.8;
   color: #2a2a2a;
   margin-bottom: 12px;
 }
-
+ 
 .disclaimer-text strong {
   color: var(--navy);
 }
-
+ 
 .action-section {
   text-align: center;
   padding: 32px 0 16px;
   border-top: 1px solid #e0e0e0;
 }
-
+ 
 .checkbox-wrapper {
   margin-bottom: 24px;
 }
-
+ 
 .checkbox-wrapper input {
   margin-right: 8px;
   width: 18px;
@@ -106,13 +106,13 @@ body {
   vertical-align: middle;
   cursor: pointer;
 }
-
+ 
 .checkbox-wrapper label {
   font-size: 14px;
   cursor: pointer;
   vertical-align: middle;
 }
-
+ 
 .btn {
   display: inline-block;
   padding: 14px 32px;
@@ -124,23 +124,23 @@ body {
   border: none;
   transition: all 0.2s;
 }
-
+ 
 .btn-primary {
   background: var(--navy);
   color: white;
 }
-
+ 
 .btn-primary:hover:not(:disabled) {
   background: #003d92;
   transform: translateY(-1px);
   box-shadow: 0 4px 12px rgba(0,45,114,0.3);
 }
-
+ 
 .btn-primary:disabled {
   background: #ccc;
   cursor: not-allowed;
 }
-
+ 
 .demo-links {
   display: none;
   margin-top: 32px;
@@ -148,17 +148,17 @@ body {
   background: #f8f9fa;
   border-radius: 6px;
 }
-
+ 
 .demo-links.visible {
   display: block;
 }
-
+ 
 .demo-links h3 {
   font-size: 16px;
   color: var(--navy);
   margin-bottom: 16px;
 }
-
+ 
 .demo-link {
   display: block;
   padding: 12px 16px;
@@ -172,22 +172,22 @@ body {
   font-weight: 500;
   transition: all 0.2s;
 }
-
+ 
 .demo-link:hover {
   border-color: var(--navy);
   background: #f0f4ff;
 }
-
+ 
 .demo-link-title {
   font-weight: 600;
   margin-bottom: 4px;
 }
-
+ 
 .demo-link-desc {
   font-size: 12px;
   color: #666;
 }
-
+ 
 footer {
   text-align: center;
   padding: 24px;
@@ -209,7 +209,7 @@ footer {
     <h1>Platform Demonstrations</h1>
     <p>Franchise Intelligence for Institutional Clients</p>
   </div>
-
+ 
   <div class="content">
     <div class="disclaimer-box">
       <div class="disclaimer-title">Important Legal Disclaimer</div>
@@ -217,64 +217,64 @@ footer {
       <div class="disclaimer-text">
         <strong>YILD Inc.</strong> ("YILD") provides market intelligence and analytical tools for institutional use only. The information, data, analyses, and commentary provided by YILD do not constitute investment advice, financial advice, trading advice, or any other type of advice, and should not be construed as a recommendation or solicitation to buy, sell, or hold any security or financial instrument.
       </div>
-
+ 
       <div class="disclaimer-text">
         YILD does not make any representation or warranty, express or implied, regarding the accuracy, completeness, timeliness, or reliability of any information or data provided. Past performance is not indicative of future results. Market intelligence and analytical outputs are subject to change without notice.
       </div>
-
+ 
       <div class="disclaimer-text">
         <strong>This platform is intended solely for use by financial institutions and their authorized personnel in connection with their own independent analysis and decision-making processes.</strong> YILD is not a registered investment adviser, broker-dealer, or financial institution, and does not provide personalized investment recommendations.
       </div>
-
+ 
       <div class="disclaimer-text">
         By accessing YILD's platform and services, you acknowledge that all investment decisions carry risk, including the potential loss of principal, and that YILD shall not be liable for any losses or damages arising from the use of its services or reliance on its market intelligence.
       </div>
     </div>
-
+ 
     <div class="action-section">
       <div class="checkbox-wrapper">
         <input type="checkbox" id="agree" onchange="toggleAccess()">
         <label for="agree">I acknowledge that I have read and understood the disclaimer above</label>
       </div>
-
+ 
       <button id="continueBtn" class="btn btn-primary" disabled onclick="showDemos()">
         Continue to Demonstrations
       </button>
-
+ 
       <div id="demoLinks" class="demo-links">
         <h3>Available Demonstrations:</h3>
         
         <a href="demo_1_rv_factory.html" class="demo-link">
           <div class="demo-link-title">RV Factory</div>
         </a>
-
+ 
         <a href="demo_2_seat_level_voice.html" class="demo-link">
-          <div class="demo-link-title">Market Commentary</div>
+          <div class="demo-link-title">Market Color</div>
         </a>
-
+ 
         <a href="demo_3_intelligent_routing.html" class="demo-link">
           <div class="demo-link-title">Sales Brief</div>
         </a>
-
+ 
         <a href="demo_4_structure_history.html" class="demo-link">
-          <div class="demo-link-title">Structure Query</div>
+          <div class="demo-link-title">Intelligence History Tool</div>
         </a>
       </div>
     </div>
   </div>
-
+ 
   <footer>
     © 2026 YILD Inc. • For institutional use only
   </footer>
 </div>
-
+ 
 <script>
 function toggleAccess() {
   const checkbox = document.getElementById('agree');
   const btn = document.getElementById('continueBtn');
   btn.disabled = !checkbox.checked;
 }
-
+ 
 function showDemos() {
   const links = document.getElementById('demoLinks');
   links.classList.add('visible');
