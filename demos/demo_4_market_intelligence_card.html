@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Market Intelligence Card — CGB 5s10s — 2026-05-03</title>
+<style>
+  :root {
+    --navy:        #002d72;
+    --gold:        #c39536;
+    --bg:          #fafafa;
+    --card-bg:     #ffffff;
+    --text:        #1a1a1a;
+    --text-mute:   #555555;
+    --border:      #e0e0e0;
+    --rule:        #ededed;
+    --tag-bg:      #f4eee0;
+    --tag-fg:      #7a5616;
+  }
+  * { box-sizing: border-box; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    margin: 0;
+    padding: 28px 24px;
+    line-height: 1.5;
+    font-size: 14px;
+  }
+  .wrapper { max-width: 880px; margin: 0 auto; }
+  .back-link {
+    display: inline-block;
+    color: var(--text-mute);
+    text-decoration: none;
+    font-size: 12px;
+    margin-bottom: 16px;
+  }
+  .back-link:hover { color: var(--navy); }
+  header {
+    border-bottom: 2px solid var(--navy);
+    padding-bottom: 14px;
+    margin-bottom: 24px;
+  }
+  header h1 {
+    color: var(--navy);
+    margin: 0 0 4px 0;
+    font-size: 22px;
+    font-weight: 600;
+    letter-spacing: -0.2px;
+    font-family: "SF Mono", Menlo, Consolas, monospace;
+  }
+  header .sub { color: var(--text-mute); font-size: 12px; }
+  .badges { margin-top: 8px; }
+  .badge {
+    display: inline-block;
+    font-size: 10px;
+    font-weight: 600;
+    padding: 2px 8px;
+    border-radius: 3px;
+    margin-right: 6px;
+    letter-spacing: 0.4px;
+    text-transform: uppercase;
+  }
+  .badge-status { background: #e8f0fc; color: var(--navy); }
+  .badge-warn   { background: #fef3c7; color: #92400e; }
+  .badge-mute   { background: #f0f0f0; color: var(--text-mute); }
+  .section { margin-bottom: 24px; }
+  .section-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: #9aa4ad;
+    margin-bottom: 10px;
+    padding-bottom: 4px;
+    border-bottom: 1px solid var(--rule);
+  }
+  .chart-frame {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 16px 20px;
+    margin-bottom: 8px;
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 0;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    overflow: hidden;
+  }
+  .field {
+    padding: 10px 14px;
+    border-right: 1px solid var(--rule);
+    border-bottom: 1px solid var(--rule);
+  }
+  .field-label {
+    font-size: 11px;
+    color: var(--text-mute);
+    margin-bottom: 3px;
+  }
+  .field-value {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--text);
+  }
+  .field-value.mono {
+    font-family: "SF Mono", Menlo, Consolas, monospace;
+  }
+  .punchline {
+    background: var(--card-bg);
+    border-left: 3px solid var(--gold);
+    border-radius: 0 4px 4px 0;
+    padding: 12px 16px;
+    color: var(--text);
+    font-size: 14px;
+    line-height: 1.55;
+  }
+  .driver {
+    color: var(--text-mute);
+    font-size: 12px;
+    margin-top: 8px;
+  }
+  .auction-list {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 4px;
+    padding: 8px 14px;
+  }
+  .auction-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 6px 0;
+    border-bottom: 1px solid var(--rule);
+    font-size: 13px;
+  }
+  .auction-row:last-child { border-bottom: none; }
+  .auction-row .leg { color: var(--text-mute); font-size: 11px; }
+  footer {
+    margin-top: 36px;
+    padding-top: 12px;
+    border-top: 1px solid var(--rule);
+    color: var(--text-mute);
+    font-size: 11px;
+    line-height: 1.6;
+  }
+</style>
+</head>
+<body>
+<div class="wrapper">
+<a class="back-link" href="index.html">&larr; back to demos</a>
+<header>
+  <h1>CGB 5s10s</h1>
+  <div class="sub">curve_spread &nbsp;·&nbsp; units: bp &nbsp;·&nbsp; convention: 10Y_minus_5Y &nbsp;·&nbsp; positive = steep &nbsp;·&nbsp; as of 2026-05-03</div>
+  <div class="badges"><span class="badge badge-status">MONITORING</span> <span class="badge badge-mute">STATE_ONLY</span> <span class="badge badge-warn">OU: FALLBACK</span></div>
+</header>
+<section class="section">
+  <div class="section-label">Summary</div>
+  <div class="punchline">CGB_5s10s at 2nd percentile (1Y) — near 1Y flat extreme | 70th percentile on 5Y (historically steep on 5Y view) | CGB_5s10s flattening 3bp over 20d — persistent (9d) | below 1Y average (44bp).</div>
+  <div class="driver">Dominant driver: <strong>Rich</strong></div>
+</section>
+<section class="section">
+  <div class="section-label">Position vs 1Y range</div>
+  <div class="chart-frame"><svg viewBox="0 0 720 160" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="1-year position chart" style="display:block;width:100%;height:auto;"><rect x="60.0" y="71.0" width="600.0" height="18.0" rx="3" ry="3" fill="#ececec" stroke="#cccccc" stroke-width="0.5"/><text x="60.0" y="107.0" font-family="-apple-system, sans-serif" font-size="11" fill="#666666" text-anchor="start">33bp (1Y low)</text><text x="660.0" y="107.0" font-family="-apple-system, sans-serif" font-size="11" fill="#666666" text-anchor="end">52bp (1Y high)</text><line x1="407.4" y1="67.0" x2="407.4" y2="93.0" stroke="#888888" stroke-width="1.5"/><text x="407.4" y="124.0" font-family="-apple-system, sans-serif" font-size="10" fill="#888888" text-anchor="middle">median 44bp</text><line x1="391.6" y1="67.0" x2="391.6" y2="93.0" stroke="#002d72" stroke-width="1.5" stroke-dasharray="3,2"/><text x="391.6" y="139.0" font-family="-apple-system, sans-serif" font-size="10" fill="#002d72" text-anchor="middle">equilibrium 43.5bp</text><circle cx="154.7" cy="80.0" r="6.5" fill="#c39536" stroke="#7a5616" stroke-width="1"/><text x="154.7" y="57.0" font-family="-apple-system, sans-serif" font-size="13" fill="#1a1a1a" font-weight="600" text-anchor="middle">current 36.0bp</text></svg></div>
+</section>
+<section class="section">
+  <div class="section-label">Levels &amp; equilibrium</div>
+  <div class="grid">
+  <div class="field"><div class="field-label">Current level</div><div class="field-value mono">36.0bp</div></div>
+  <div class="field"><div class="field-label">Equilibrium (μ)</div><div class="field-value mono">43.50bp</div></div>
+  <div class="field"><div class="field-label">Distance to μ</div><div class="field-value mono">-7.50 bp</div></div>
+  <div class="field"><div class="field-label">z-score</div><div class="field-value mono">-2.13</div></div>
+  <div class="field"><div class="field-label">Half-life</div><div class="field-value mono">—</div></div>
+  <div class="field"><div class="field-label">Equilibrium model</div><div class="field-value">rolling_mean_fallback</div></div>
+  <div class="field"><div class="field-label">OU quality</div><div class="field-value">FALLBACK</div></div>
+  <div class="field"><div class="field-label">Percentile (1M)</div><div class="field-value">5th</div></div>
+  <div class="field"><div class="field-label">Percentile (3M)</div><div class="field-value">6th</div></div>
+  <div class="field"><div class="field-label">Percentile (1Y)</div><div class="field-value">2nd</div></div>
+  <div class="field"><div class="field-label">Percentile (5Y)</div><div class="field-value">70th</div></div>
+  </div>
+</section>
+<section class="section">
+  <div class="section-label">Trend &amp; volatility</div>
+  <div class="grid">
+  <div class="field"><div class="field-label">Trend classification</div><div class="field-value">Flattening</div></div>
+  <div class="field"><div class="field-label">Trend magnitude (20d)</div><div class="field-value mono">-3.0 bp</div></div>
+  <div class="field"><div class="field-label">Trend slope</div><div class="field-value mono">-0.15 bp/d</div></div>
+  <div class="field"><div class="field-label">Range high (20d)</div><div class="field-value mono">40.0bp</div></div>
+  <div class="field"><div class="field-label">Range low (20d)</div><div class="field-value mono">34.0bp</div></div>
+  <div class="field"><div class="field-label">Position in range</div><div class="field-value mono">33% of 20d range</div></div>
+  <div class="field"><div class="field-label">Recent flow (5d)</div><div class="field-value">Flattening</div></div>
+  <div class="field"><div class="field-label">Recent flow magnitude</div><div class="field-value mono">-3.0 bp</div></div>
+  <div class="field"><div class="field-label">Recent flow slope</div><div class="field-value mono">-0.60 bp/d</div></div>
+  <div class="field"><div class="field-label">Realized vol (20d ann.)</div><div class="field-value mono">20.13 bp/yr</div></div>
+  <div class="field"><div class="field-label">Vol regime</div><div class="field-value">LOW</div></div>
+  </div>
+</section>
+<section class="section">
+  <div class="section-label">Persistence</div>
+  <div class="grid">
+  <div class="field"><div class="field-label">Extreme days</div><div class="field-value mono">11</div></div>
+  <div class="field"><div class="field-label">Trend days</div><div class="field-value mono">9</div></div>
+  </div>
+</section>
+<section class="section">
+  <div class="section-label">Seasonality</div>
+  <div class="grid">
+  <div class="field"><div class="field-label">Seasonal state</div><div class="field-value">Q2 Mid Year Demand</div></div>
+  <div class="field"><div class="field-label">Bias direction</div><div class="field-value">Flattening</div></div>
+  </div>
+  <div class="punchline" style="margin-top:8px">Year-half demand from pensions and insurers tends to support long end</div>
+</section>
+<footer>
+  <div>Data quality: 911 observations · 1M=FULL · 3M=FULL · 1Y=FULL · 5Y=PARTIAL · z=FULL · vol=FULL · trend=FULL · flow=FULL · engine=PILOT1-v1.4-OU</div>
+</footer>
+
+</div>
+</body>
+</html>
