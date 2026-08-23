@@ -1,224 +1,270 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="YILD Inc. — Institutional Market Intelligence Platform for Capital Markets">
-  <meta property="og:title" content="YILD Inc.">
-  <meta property="og:description" content="Transforming how sales and trading franchises generate ideas, coordinate intelligence, and engage clients.">
-  <meta property="og:url" content="https://www.yildinc.com">
-  <link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20viewBox%3D%220%200%20100%20100%22%3E%3Crect%20width%3D%22100%22%20height%3D%22100%22%20fill%3D%22%23002d72%22%2F%3E%3Ctext%20x%3D%2250%22%20y%3D%2265%22%20text-anchor%3D%22middle%22%20font-family%3D%22-apple-system%2CBlinkMacSystemFont%2C'Segoe%20UI'%2Csans-serif%22%20font-size%3D%2238%22%20font-weight%3D%22600%22%20letter-spacing%3D%222%22%20fill%3D%22white%22%3EYILD%3C%2Ftext%3E%3C%2Fsvg%3E">
-  <title>YILD Inc.</title>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="YILD — institutional intelligence for capital markets. A shared intelligence layer that keeps a sales and trading franchise aware, consistent and continuous." />
+  <title>YILD — Institutional Intelligence for Capital Markets</title>
+  <link rel="canonical" href="https://yildinc.com/" />
+  <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="YILD Inc." />
+  <meta property="og:title" content="YILD — Institutional Intelligence for Capital Markets" />
+  <meta property="og:description" content="A shared intelligence layer for the sales and trading franchise: one common focus across trading, sales and management." />
+  <meta property="og:url" content="https://yildinc.com/" />
+  <meta property="og:image" content="https://yildinc.com/og.png" />
+  <meta name="twitter:card" content="summary_large_image" />
   <style>
-    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
- 
-    body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      background: #fff;
-      color: #222;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-    }
- 
-    header {
-      padding: 48px 48px 0;
-    }
- 
-    .logo {
-      display: inline-flex;
-      flex-direction: column;
-      align-items: stretch;
-    }
- 
-    .logo-wordmark {
-      font-size: 48px;
-      font-weight: 400;
-      letter-spacing: 10px;
-      color: #002d72;
-      line-height: 1;
-      text-align: center;
-    }
- 
-    .logo-rule {
-      height: 0.8px;
-      background: #002d72;
-      margin: 6px 0 4px;
-    }
- 
-    .logo-inc {
-      font-size: 10px;
-      font-weight: 400;
-      letter-spacing: 8px;
-      color: #002d72;
-      text-transform: uppercase;
-      text-align: center;
-    }
- 
-    main {
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      justify-content: flex-start;
-      padding: 0 48px;
-      max-width: 760px;
-      margin: 0 auto;
-      width: 100%;
-    }
- 
-    .tagline {
-      font-size: 22px;
-      font-weight: 400;
-      color: #002d72;
-      line-height: 1.4;
-      margin-bottom: 16px;
-    }
- 
-    .lead-sub {
-      font-size: 14px;
-      color: #444;
-      line-height: 1.7;
-      margin-bottom: 40px;
-      max-width: 640px;
-      border-left: 2px solid #002d72;
-      padding-left: 16px;
-    }
- 
-    .pillars {
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-      margin-bottom: 56px;
-    }
- 
-    .pillar {
-      display: flex;
-      align-items: flex-start;
-      gap: 16px;
-    }
- 
-    .pillar-marker {
-      width: 3px;
-      min-height: 40px;
-      background: #111;
-      margin-top: 3px;
-      flex-shrink: 0;
-    }
- 
-    .pillar-text {
-      font-size: 15px;
-      color: #444;
-      line-height: 1.6;
-    }
- 
-    .pillar-text strong {
-      color: #111;
-      font-weight: 500;
-    }
- 
-    .contact {
-      font-size: 13px;
-      color: #888;
-    }
- 
-    .contact a {
-      color: #111;
-      text-decoration: none;
-      border-bottom: 1px solid #ccc;
-      padding-bottom: 1px;
-    }
- 
-    .contact a:hover {
-      border-bottom-color: #111;
-    }
- 
-    footer {
-      padding: 32px 48px;
-      font-size: 11px;
-      color: #ccc;
-      border-top: 1px solid #f0f0f0;
-    }
- 
-    .client-login {
-      position: absolute;
-      top: 50%;
-      right: 48px;
-      transform: translateY(-50%);
-      font-size: 11px;
-      letter-spacing: 3px;
-      text-transform: uppercase;
-      color: #002d72;
-      text-decoration: none;
-      border: 1px solid #002d72;
-      padding: 8px 16px;
-      transition: background .15s ease, color .15s ease;
-    }
-    .client-login:hover { background: #002d72; color: #fff; }
- 
-    @media (max-width: 600px) {
-      header { padding: 32px 24px 0; }
-      main { padding: 0 24px; }
-      footer { padding: 24px; }
-      .logo-wordmark { font-size: 38px; }
-      .tagline { font-size: 18px; }
-      .client-login { position: static; transform: none; display: block; width: max-content; margin: 16px auto 0; }
-    }
-  </style>
+:root{
+  --bg:#081016;
+  --bg2:#0a131a;
+  --panel:#101c24;
+  --line:#20303b;
+  --text:#f4f1e8;
+  --muted:#778997;
+  --muted2:#4d606d;
+  --gold:#d6a838;
+  --gold2:#f0cb66;
+  --max:1500px;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;background:var(--bg)}
+body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;letter-spacing:-.02em;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+.shell{width:min(calc(100% - 72px),var(--max));margin:0 auto}
+.grain{position:fixed;inset:0;pointer-events:none;z-index:40;opacity:.18;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.09'/%3E%3C/svg%3E")}
+.nav{height:78px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid rgba(98,121,137,.18);position:relative;z-index:20}
+.brand{font-size:22px;letter-spacing:.27em;font-weight:700}
+.nav-links{display:flex;align-items:center;gap:34px;font-size:12px;letter-spacing:.08em;color:#9ca9b1;text-transform:uppercase}
+.nav-links a:hover{color:var(--text)}
+.nav-login{color:#c8cfd4}
+.nav-cta{border:1px solid #43515a;padding:12px 16px;color:#dad9d2!important}
+.nav-cta span,.button span{color:var(--gold)}
+.menu{display:none;background:none;border:0;color:#fff;letter-spacing:.1em}
+.hero{padding:118px 0 120px;min-height:820px;position:relative}
+.hero>.eyebrow,.hero>.hero-title,.hero>.hero-copy,.hero>.hero-actions{position:relative;z-index:3}
+.eyebrow,.section-index,.proof-label{font-size:10px;letter-spacing:.24em;color:#677b88;text-transform:uppercase;font-weight:700}
+.hero-title{font-size:clamp(68px,7.5vw,132px);line-height:.90;margin:28px 0 36px;max-width:980px;font-weight:520;letter-spacing:-.06em}
+.hero-title span{display:block}
+.gold{color:var(--gold2)}
+.hero-copy{font-size:20px;line-height:1.55;color:#b2bcc3;max-width:680px}
+.hero-actions{display:flex;gap:28px;align-items:center;margin-top:38px}
+.button{display:inline-flex;align-items:center;gap:25px;border:1px solid #6b5729;text-transform:uppercase;letter-spacing:.12em;font-size:11px;padding:16px 20px;transition:.25s ease}
+.button:hover{background:#d0a635;color:#071015;border-color:#d0a635}
+.button:hover span{color:#071015}
+.button.large{padding:19px 26px;font-size:12px}
+.text-link{font-size:11px;text-transform:uppercase;letter-spacing:.14em;color:#8797a2}
+.product-window{position:absolute;right:-18px;bottom:118px;width:47%;height:430px;z-index:1;border:1px solid rgba(92,119,134,.25);overflow:hidden;background:#071016;box-shadow:0 60px 160px rgba(0,0,0,.42)}
+.product-window img{display:block;width:150%;height:100%;object-fit:cover;object-position:left center;opacity:.34;filter:saturate(.8) contrast(1.03)}
+.product-window:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(8,16,22,.08) 20%,rgba(8,16,22,.62) 68%,rgba(8,16,22,.95) 100%),linear-gradient(0deg,rgba(8,16,22,.75) 0,transparent 38%)}
+figure.product-window{margin:0}
+.product-topline{position:absolute;z-index:2;top:22px;left:25px;right:25px;display:flex;justify-content:space-between;font-size:9px;letter-spacing:.2em;color:#7d8d97}
+.live{color:#789e81}
+.privacy-mask{position:absolute;z-index:2;background:rgba(7,14,20,.72);backdrop-filter:blur(8px)}
+.mask-one{top:56px;left:0;width:27%;height:75%}.mask-two{top:55px;left:46%;width:27%;height:31%}.mask-three{top:44%;right:0;width:34%;height:42%}
+.preview-caption{position:absolute;z-index:3;right:38px;bottom:34px;text-align:right}.preview-caption span{display:block;font-size:9px;letter-spacing:.22em;color:var(--gold);margin-bottom:8px}.preview-caption strong{font-weight:500;font-size:18px}
+.statement{padding:180px 0 190px;border-top:1px solid rgba(87,110,124,.2)}
+.statement-large{font-size:clamp(52px,6vw,105px);line-height:.98;margin:42px 0 95px;max-width:1350px}
+.statement-grid{display:grid;grid-template-columns:1fr 1fr;gap:120px;margin-left:34%;color:#92a0aa;font-size:19px;line-height:1.65}
+.focus-section{min-height:900px;position:relative;border-top:1px solid rgba(87,110,124,.2);overflow:hidden}
+
+
+
+.focus-copy{position:relative;z-index:4;padding-top:235px;max-width:var(--max)}
+.focus-copy h2{font-size:clamp(64px,6.8vw,116px);line-height:.92;margin:25px 0;max-width:58%;font-weight:520;letter-spacing:-.055em}
+.focus-copy p{font-size:20px;color:#93a2ac;max-width:520px;line-height:1.6;margin-top:45px}
+.example{margin-top:56px;max-width:580px;border-left:1px solid rgba(214,168,56,.42);padding-left:26px}
+.example-label{display:block;font-size:10px;letter-spacing:.22em;color:var(--gold);text-transform:uppercase;font-weight:700}
+.focus-copy .example p{font-size:16px;line-height:1.72;color:#8b9aa4;max-width:100%;margin-top:18px}
+.focus-copy .example p.example-close{color:#667983;margin-top:14px;font-size:15px}
+.principles{padding:170px 0}
+.principles-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);margin-top:55px;border:1px solid var(--line)}
+.principle{background:var(--bg);padding:48px 42px 58px;min-height:330px}
+.num{font-size:11px;color:var(--gold);letter-spacing:.14em}
+.principle h3{font-size:42px;margin:72px 0 18px;font-weight:500}.principle p{color:#8496a2;line-height:1.65;font-size:17px;max-width:360px}
+.franchise-line{padding:70px 0 180px;border-top:1px solid rgba(87,110,124,.2)}
+.franchise-stage{display:grid;grid-template-columns:auto 1fr auto 1fr auto;align-items:center;gap:28px;margin:120px auto 110px;max-width:1080px}.role{letter-spacing:.2em;font-size:12px}.connector{height:1px;background:#33434e;position:relative}.connector span{width:7px;height:7px;border:1px solid var(--gold);border-radius:50%;position:absolute;top:-3px;left:0;animation:travel 4s linear infinite}@keyframes travel{from{left:0}to{left:100%}}
+.center-title{text-align:center;font-size:clamp(50px,6vw,90px);line-height:1.05;font-weight:500}
+.continuity{padding:170px 0 190px;border-top:1px solid rgba(87,110,124,.2)}
+.continuity-grid{display:grid;grid-template-columns:1.2fr 1fr;gap:110px;margin-top:65px;align-items:start}.continuity h2{font-size:clamp(52px,6vw,102px);line-height:.97;margin:0 0 18px;font-weight:510}.muted{color:#4e5d67}.memory-list{display:grid;grid-template-columns:1fr 1fr;border-top:1px solid var(--line)}.memory-list span{padding:22px 0;border-bottom:1px solid var(--line);font-size:13px;color:#93a1aa;letter-spacing:.03em}.retains{font-size:clamp(38px,4vw,68px);margin-top:110px;text-align:right}
+.not-analytics{padding:180px 0 180px;border-top:1px solid rgba(87,110,124,.2)}.not-analytics h2{font-size:clamp(68px,9vw,150px);line-height:.83;font-weight:510;margin:55px 0}.not-analytics p{font-size:21px;color:#90a0aa;line-height:1.6;max-width:720px;margin-left:auto}
+.proof{padding:40px 0 180px}.proof-card{border:1px solid var(--line);padding:55px;background:linear-gradient(145deg,rgba(14,27,36,.85),rgba(8,16,22,.9))}.proof-card h3{font-size:clamp(44px,5vw,78px);font-weight:500;margin:40px 0 60px;line-height:1.05}.proof-points{display:grid;grid-template-columns:repeat(4,1fr);border-top:1px solid var(--line)}.proof-points span{padding:24px 0;color:#9faab1;font-size:13px;letter-spacing:.08em;text-transform:uppercase}
+.final-cta{min-height:900px;padding:150px 0;display:flex;flex-direction:column;justify-content:center;border-top:1px solid rgba(87,110,124,.2)}.micro{font-size:11px;letter-spacing:.23em;color:#788b96;margin:56px 0}.final-cta h2{font-size:clamp(63px,8vw,130px);line-height:.88;font-weight:500;margin:0 0 65px;max-width:1250px}.tagline{margin-top:95px;color:#7f8e98;font-family:Georgia,serif;font-style:italic;font-size:18px}
+.footer{border-top:1px solid rgba(87,110,124,.2);color:#657783;font-size:12px;padding:44px 0 40px}.footer-top{display:grid;grid-template-columns:1fr 1fr 1fr;align-items:center;min-height:80px}.footer .brand{color:#eef0ec}.footer-copy{text-align:center}.footer-links{display:flex;justify-content:flex-end;gap:30px}.footer-legal{margin-top:34px;padding-top:22px;border-top:1px solid rgba(87,110,124,.14);display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;color:#55666f;font-size:11px;letter-spacing:.03em}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .9s ease,transform .9s ease}.reveal.visible{opacity:1;transform:none}
+a:focus-visible,button:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+@media(max-width:900px){.shell{width:min(calc(100% - 34px),var(--max))}.nav-links{display:none;position:absolute;left:0;right:0;top:78px;background:#0a131a;padding:24px;flex-direction:column;align-items:flex-start;border-bottom:1px solid var(--line)}.nav-links.open{display:flex}.menu{display:block}.hero{padding-top:90px;padding-bottom:110px;min-height:auto}.focus-section{min-height:980px}.hero-title{font-size:clamp(54px,15vw,82px)}.product-window{position:relative;right:auto;width:100%;height:380px;margin-top:75px}.statement-grid{grid-template-columns:1fr;gap:20px;margin-left:0}.focus-copy{padding-top:120px}.focus-copy h2{max-width:100%}.principles-grid{grid-template-columns:1fr}.franchise-stage{grid-template-columns:1fr;text-align:center}.connector{width:1px;height:70px;margin:auto}.connector span{left:-3px;top:0;animation:travelY 4s linear infinite}@keyframes travelY{from{top:0}to{top:100%}}.continuity-grid{grid-template-columns:1fr;gap:50px}.retains{text-align:left}.proof-points{grid-template-columns:1fr 1fr}.footer-top{grid-template-columns:1fr;gap:18px}.footer-legal{flex-direction:column;gap:10px}.footer-copy{text-align:left}.footer-links{justify-content:flex-start}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;animation:none!important}.reveal{opacity:1;transform:none}}
+
+</style>
+
 </head>
 <body>
- 
-  <header>
-    <div style="display:flex;justify-content:center;padding:16px 48px 0;position:relative;">
-      <a href="https://pull.yildinc.com" class="client-login" aria-label="Client login to the YILD terminal">Client Login</a>
-      <div class="logo">
-        <div class="logo-wordmark">YILD</div>
-        <div class="logo-rule"></div>
-        <div class="logo-inc">Inc.</div>
-      </div>
-    </div>
+  <div class="grain" aria-hidden="true"></div>
+  <header class="nav shell">
+    <a href="#top" class="brand" aria-label="YILD home">YILD</a>
+    <nav class="nav-links" aria-label="Primary navigation">
+      <a href="#why">Why YILD</a>
+      <a href="#franchise">Franchise</a>
+      <a href="#continuity">Continuity</a>
+      <a href="https://pull.yildinc.com" class="nav-login" rel="noopener">Client login</a>
+      <a href="#contact" class="nav-cta">Private demonstration <span>↗</span></a>
+    </nav>
+    <button class="menu" aria-label="Toggle menu" aria-expanded="false">MENU</button>
   </header>
- 
-  <main>
-    <div style="height:80px;"></div>
-    <p class="tagline">Institutionalizing market intelligence across the franchise.</p>
-    <p class="lead-sub">A centralized intelligence layer for sales and trading franchises, designed to support consistent market understanding and coordinated client engagement.</p>
- 
-    <div class="pillars">
-      <div class="pillar">
-        <div class="pillar-marker"></div>
-        <div class="pillar-text">
-          <strong>Market intelligence, made explicit.</strong> Market conditions are captured, structured, and distributed as coherent, franchise-wide views. What is observed is no longer fragmented across individuals — it is formalized and made available with its full context.
+
+  <main id="top">
+    <section class="hero shell">
+      <div class="eyebrow reveal">INSTITUTIONAL INTELLIGENCE FOR CAPITAL MARKETS</div>
+      <h1 class="hero-title reveal"><span>Markets move.</span><span class="gold">Institutions should remember.</span></h1>
+      <p class="hero-copy reveal">YILD gives a markets franchise a persistent, coordinated understanding of what matters — without turning judgement into noise.</p>
+      <div class="hero-actions reveal">
+        <a class="button primary" href="#contact">Request a private demonstration <span>↗</span></a>
+        <a class="text-link" href="#why">Discover YILD <span>↓</span></a>
+      </div>
+
+      <figure class="product-window reveal" aria-label="The YILD board, partially masked">
+        <div class="product-topline"><span>YILD — FRANCHISE BOARD</span><span class="live">● LIVE</span></div>
+        <img src="board.png" alt="The YILD franchise board, with client and position detail masked" loading="eager" decoding="async" fetchpriority="high" />
+        <div class="privacy-mask mask-one" aria-hidden="true"></div>
+        <div class="privacy-mask mask-two" aria-hidden="true"></div>
+        <div class="privacy-mask mask-three" aria-hidden="true"></div>
+        <figcaption class="preview-caption"><span>DETAIL WITHHELD</span><strong>Shown under NDA.</strong></figcaption>
+      </figure>
+    </section>
+
+    <section class="statement shell" id="why">
+      <div class="section-index">01 / WHY YILD</div>
+      <p class="statement-large reveal">Your institution knows more<br/>than its systems do.</p>
+      <div class="statement-grid reveal">
+        <p>Markets businesses generate constant interpretation — across trading, sales, client conversations and management judgement.</p>
+        <p>Without continuity, that intelligence fragments. YILD makes the franchise more aware, more consistent and more durable.</p>
+      </div>
+    </section>
+
+    <section class="focus-section">
+      <div class="focus-copy shell">
+        <div class="section-index">02 / FOCUS</div>
+        <h2 class="reveal">What matters.<br/><span class="gold">Where it matters.</span></h2>
+        <p class="reveal">From market relevance to client relevance — creating a common focus across the franchise.</p>
+        <div class="example reveal">
+          <span class="example-label">Example — rates relative value</span>
+          <p>A structure on the Treasury curve dislocates. YILD&rsquo;s extensive archives and intelligent data evaluate its relevance for clients, and put it in front of the salespeople who cover them.</p>
+          <p class="example-close">The same applies to any market the franchise makes.</p>
         </div>
       </div>
-      <div class="pillar">
-        <div class="pillar-marker"></div>
-        <div class="pillar-text">
-          <strong>Consistency from desk to client.</strong> Sales and trading operate from a shared analytical foundation, ensuring that what is observed, discussed, and communicated remains aligned. Market views are expressed in a consistent format, supporting more relevant client engagement.
+    </section>
+
+    <section class="principles shell" id="franchise">
+      <div class="section-index">03 / THE FRANCHISE</div>
+      <div class="principles-grid">
+        <article class="principle reveal">
+          <span class="num">01</span>
+          <h3>Awareness.</h3>
+          <p>See what deserves attention across the market — without drowning in another layer of dashboards.</p>
+        </article>
+        <article class="principle reveal">
+          <span class="num">02</span>
+          <h3>Continuity.</h3>
+          <p>Carry institutional understanding through time instead of rebuilding context from scratch each morning.</p>
+        </article>
+        <article class="principle reveal">
+          <span class="num">03</span>
+          <h3>Coordination.</h3>
+          <p>Create a common focus across trading, sales and management — connecting what matters in markets to where it matters across the client franchise.</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="franchise-line shell">
+      <div class="section-index">04 / CLIENT RELEVANCE</div>
+      <div class="franchise-stage reveal">
+        <div class="role">TRADING</div>
+        <div class="connector"><span></span></div>
+        <div class="role">SALES</div>
+        <div class="connector"><span></span></div>
+        <div class="role">MANAGEMENT</div>
+      </div>
+      <p class="micro reveal" style="text-align:center; margin-bottom:1.25rem;">FROM MARKET RELEVANCE TO CLIENT RELEVANCE.</p>
+      <h2 class="center-title reveal">One common focus.<br/><span class="gold">Across the franchise.</span></h2>
+      <p class="reveal muted" style="text-align:center; max-width:760px; margin:2rem auto 0;">Trading sees the opportunity. Sales sees the relevance. Management sees the franchise.</p>
+    </section>
+
+    <section class="continuity shell" id="continuity">
+      <div class="section-index">05 / INSTITUTIONAL MEMORY</div>
+      <div class="continuity-grid">
+        <div>
+          <h2 class="reveal">A senior trader leaves.</h2>
+          <h2 class="reveal muted">What leaves with them?</h2>
+        </div>
+        <div class="memory-list reveal">
+          <span>Market memory</span>
+          <span>Historical context</span>
+          <span>Relative-value intuition</span>
+          <span>Regime experience</span>
+          <span>Client understanding</span>
+          <span>Decision patterns</span>
         </div>
       </div>
-      <div class="pillar">
-        <div class="pillar-marker"></div>
-        <div class="pillar-text">
-          <strong>Institutional continuity.</strong> Market understanding is accumulated and retained at the firm level. Insights are preserved beyond individuals, creating a persistent body of knowledge that supports continuity, scalability, and long-term franchise development.
+      <div class="retains reveal">YILD makes intelligence <span class="gold">persistent.</span></div>
+    </section>
+
+    <section class="not-analytics shell">
+      <div class="section-index">06 / CATEGORY</div>
+      <h2 class="reveal">Not another<br/>analytics platform.</h2>
+      <p class="reveal">YILD reads the state of the markets a franchise makes, ranks what deserves attention today, carries it to the desks and clients it is relevant to, and keeps the record. One intelligence layer for the franchise — built around awareness, continuity, coordination and scrutiny.</p>
+    </section>
+
+    <section class="proof shell">
+      <div class="proof-card reveal">
+        <div class="proof-label">DESIGNED FOR INSTITUTIONS</div>
+        <h3>Built to be trusted.<br/>Built to be questioned.</h3>
+        <div class="proof-points">
+          <span>Governed</span><span>Traceable</span><span>Persistent</span><span>Institutional</span>
         </div>
       </div>
-    </div>
- 
-    <div style="border-left:3px solid #002d72;padding:16px 20px;margin-bottom:48px;margin-top:32px;background:#eef2f7;">
-      <p style="font-size:14px;color:#333;line-height:1.7;margin:0;">
-        <strong style="color:#002d72;">Robust architecture. Full traceability. Controlled processes.</strong><br>
-        The platform operates within a governed framework designed to ensure consistency, transparency, and reliability of outputs across the organization.
-      </p>
-    </div>
- 
-    <div class="contact">
-      For institutional enquiries: <a href="mailto:info@yildinc.com">info@yildinc.com</a>
-    </div>
+    </section>
+
+    <section class="final-cta shell" id="contact">
+      <div class="section-index">07 / PRIVATE DEMONSTRATION</div>
+      <p class="micro reveal">SOME THINGS SHOULD NOT BE EXPLAINED ON A WEBSITE.</p>
+      <h2 class="reveal">See what YILD<br/>changes inside a<br/><span class="gold">markets franchise.</span></h2>
+      <a class="button primary large reveal" href="mailto:info@yildinc.com?subject=YILD%20Private%20Demonstration">Request a private demonstration <span>↗</span></a>
+      <p class="tagline reveal">More ideas. More conversations.</p>
+    </section>
   </main>
- 
-  <footer>
-    © 2026 YILD Inc. All rights reserved.
+
+  <footer class="footer shell">
+    <div class="footer-top">
+      <div class="brand">YILD</div>
+      <div class="footer-copy">Institutional intelligence for global markets.</div>
+      <div class="footer-links"><a href="https://pull.yildinc.com" rel="noopener">Client login</a><a href="mailto:info@yildinc.com">Contact</a><a href="#top">Back to top ↑</a></div>
+    </div>
+    <div class="footer-legal">
+      <span>YILD Inc. — a Delaware corporation. Registered office in Delaware, USA.</span>
+      <span>info@yildinc.com</span>
+      <span>&copy; 2026 YILD Inc. All rights reserved.</span>
+    </div>
   </footer>
- 
+
+  <script>
+const observer = new IntersectionObserver((entries)=>{
+  entries.forEach((entry)=>{
+    if(entry.isIntersecting){ entry.target.classList.add('visible'); observer.unobserve(entry.target); }
+  });
+},{threshold:.12});
+document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
+const menu=document.querySelector('.menu');
+const links=document.querySelector('.nav-links');
+menu.addEventListener('click',()=>{
+  const open=links.classList.toggle('open');
+  menu.setAttribute('aria-expanded',open?'true':'false');
+});
+document.querySelectorAll('.nav-links a').forEach(a=>a.addEventListener('click',()=>links.classList.remove('open')));
+// If board.png is absent, drop the whole panel rather than show a broken image.
+const shot=document.querySelector('.product-window img');
+if(shot){ shot.addEventListener('error',()=>{ const w=shot.closest('.product-window'); if(w) w.remove(); }); }
+
+</script>
 </body>
 </html>
